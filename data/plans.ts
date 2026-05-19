@@ -1,0 +1,48 @@
+export const plans = [
+  {
+    id: 1,
+    name: "Consulta Inicial",
+    price: "$850",
+    period: "por consulta",
+    description: "Evaluación nutricional completa y plan personalizado",
+    features: [
+      "Evaluación de composición corporal",
+      "Análisis de hábitos alimentarios",
+      "Plan de alimentación personalizado",
+      "Recomendaciones de suplementación",
+      "Guía de porciones y recomendaciones",
+    ],
+    popular: false,
+  },
+  {
+    id: 2,
+    name: "Plan Mensual",
+    price: "$2,500",
+    period: "por mes",
+    description: "Acompañamiento quincenal con seguimiento constante",
+    features: [
+      "Todo lo incluido en consulta inicial",
+      "2 consultas de seguimiento",
+      "Ajustes según tu progreso",
+      "Seguimiento vía WhatsApp",
+      "Menús actualizados mensualmente",
+    ],
+    popular: true,
+  },
+  {
+    id: 3,
+    name: "Acompañamiento Premium",
+    price: "$4,500",
+    period: "por 3 meses",
+    description: "Seguimiento intensivo para resultados sostenibles",
+    features: [
+      "Todo lo incluido en plan mensual",
+      "6 consultas de seguimiento",
+      "Seguimiento diario vía WhatsApp",
+      "Planes de alimentación quincenales",
+      "Recetas exclusivas",
+      "Estrategias para situaciones especiales",
+    ],
+    popular: false,
+  },
+];
