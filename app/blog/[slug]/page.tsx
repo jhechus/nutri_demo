@@ -1,16 +1,17 @@
-"use client";
-
 import { blogPosts } from "@/data/blog";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { siteData } from "@/data/site";
-import { motion } from "framer-motion";
 import { Calendar, ArrowLeft, Share2 } from "lucide-react";
-import { useParams } from "next/navigation";
 
-export default function BlogPost() {
-  const params = useParams();
+interface BlogPostProps {
+  params: {
+    slug: string;
+  };
+}
+
+export default function BlogPost({ params }: BlogPostProps) {
   const post = blogPosts.find((p) => p.slug === params.slug);
 
   if (!post) {
@@ -25,12 +26,7 @@ export default function BlogPost() {
     <div className="pt-24">
       <article className="bg-beige-50 pb-20">
         <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="max-w-4xl mx-auto"
-          >
+          <div className="max-w-4xl mx-auto">
             <Link
               href="/blog"
               className="inline-flex items-center space-x-2 text-sage-600 hover:text-sage-500 mb-8"
@@ -64,19 +60,13 @@ export default function BlogPost() {
             </h1>
 
             <p className="text-xl text-sage-600 mb-8">{post.excerpt}</p>
-          </motion.div>
+          </div>
         </div>
       </article>
 
       <article className="py-20 bg-white">
         <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="max-w-4xl mx-auto"
-          >
+          <div className="max-w-4xl mx-auto">
             <div
               className="prose prose-lg max-w-none"
               dangerouslySetInnerHTML={{ __html: post.content }}
@@ -107,7 +97,7 @@ export default function BlogPost() {
                 </button>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </article>
 
@@ -120,12 +110,8 @@ export default function BlogPost() {
             </h2>
             <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
               {relatedPosts.map((relatedPost, index) => (
-                <motion.div
+                <div
                   key={relatedPost.slug}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
                   className="bg-white rounded-xl shadow-md overflow-hidden"
                 >
                   <div className="relative h-40 overflow-hidden">
@@ -150,7 +136,7 @@ export default function BlogPost() {
                       Leer más
                     </Link>
                   </div>
-                </motion.div>
+                </div>
               ))}
             </div>
           </div>
@@ -160,12 +146,7 @@ export default function BlogPost() {
       {/* CTA */}
       <section className="py-20 bg-sage-500">
         <div className="container mx-auto px-4 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
+          <div>
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
               ¿Listo para mejorar tu alimentación?
             </h2>
@@ -181,7 +162,7 @@ export default function BlogPost() {
             >
               <span>Agendar consulta</span>
             </a>
-          </motion.div>
+          </div>
         </div>
       </section>
     </div>
