@@ -7,27 +7,19 @@ import Link from "next/link";
 import { siteData } from "@/data/site";
 import { motion } from "framer-motion";
 import { Calendar, ArrowLeft, Share2 } from "lucide-react";
+import { useParams } from "next/navigation";
 
-interface BlogPostProps {
-  params: {
-    slug: string;
-  };
-}
-
-export async function generateStaticParams() {
-  return blogPosts.map((post) => ({
-    slug: post.slug,
-  }));
-}
-
-export default function BlogPost({ params }: BlogPostProps) {
+export default function BlogPost() {
+  const params = useParams();
   const post = blogPosts.find((p) => p.slug === params.slug);
 
   if (!post) {
     notFound();
   }
 
-  const relatedPosts = blogPosts.filter((p) => p.slug !== post.slug).slice(0, 3);
+  const relatedPosts = blogPosts
+    .filter((p) => p.slug !== post.slug)
+    .slice(0, 3);
 
   return (
     <div className="pt-24">
@@ -85,7 +77,7 @@ export default function BlogPost({ params }: BlogPostProps) {
             transition={{ duration: 0.6 }}
             className="max-w-4xl mx-auto"
           >
-            <div 
+            <div
               className="prose prose-lg max-w-none"
               dangerouslySetInnerHTML={{ __html: post.content }}
             />
@@ -123,7 +115,9 @@ export default function BlogPost({ params }: BlogPostProps) {
       {relatedPosts.length > 0 && (
         <section className="py-20 bg-sage-50">
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-bold text-sage-800 mb-8 text-center">Artículos relacionados</h2>
+            <h2 className="text-3xl font-bold text-sage-800 mb-8 text-center">
+              Artículos relacionados
+            </h2>
             <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
               {relatedPosts.map((relatedPost, index) => (
                 <motion.div
@@ -176,7 +170,8 @@ export default function BlogPost({ params }: BlogPostProps) {
               ¿Listo para mejorar tu alimentación?
             </h2>
             <p className="text-xl text-sage-100 mb-8 max-w-2xl mx-auto">
-              Agenda una consulta y recibe un plan personalizado adaptado a tus necesidades
+              Agenda una consulta y recibe un plan personalizado adaptado a tus
+              necesidades
             </p>
             <a
               href={`https://wa.me/${siteData.whatsapp.replace(/\D/g, "")}?text=Hola, me interesa agendar una consulta después de leer el blog`}
